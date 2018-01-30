@@ -100,7 +100,6 @@ $(function() {
 
         it('at least 1 single .entry element in .feed container', function(done) {
             expect($('.feed').children().length).not.toBe(0);
-            // add this to any test that relies on the async function
             done();
         });
 
@@ -113,5 +112,27 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
 
+    describe('New Feed Selection', function() {
+        var feedContent;
+
+        beforeEach(function(done) {
+            loadFeed(1, function() {
+                feedContent = $('.feed').html();
+                setTimeout(function() {
+                    done();
+                }, 2000);
+            });
+        });
+
+
+        it('ensures a new feed call loads changed content', function(done) {
+            loadFeed(2, function() {
+                expect(feedContent).not.toEqual($('.feed').html());
+                done();
+            });
+
+        });
+
+    });
 
 }());
