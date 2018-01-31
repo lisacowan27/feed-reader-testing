@@ -1,10 +1,6 @@
 /* $() function to ensure that tests do not run until the DOM is ready */
 $(function () {
 
-    /* Global variables */
-
-    var describe, it, expect, allFeeds, beforeEach, loadFeed;
-
     /* Test suite for the RSS feeds definitions */
 
     describe('RSS Feeds', function () {
@@ -23,8 +19,7 @@ $(function () {
 
         it('allFeeds URL is defined', function () {
             allFeeds.forEach(function (feed) {
-                expect(feed.url).toBeDefined();
-                expect(feed.url.length).not.toBe(0);
+                expect(feed.url).toBeTruthy();
             });
         });
 
@@ -76,18 +71,15 @@ $(function () {
 
         beforeEach(function (done) {
             setTimeout(function () {
-                loadFeed(0);
-                done();
-            }, 2000);
+                loadFeed(0, done);
+            });
         });
 
 
-        it('at least 1 single .entry element in .feed container',
-            function (done) {
-                expect($('.feed').children().length).not.toBe(0);
-                done();
-            });
-
+        it('at least 1 single .entry element in .feed container', function (done) {
+            expect($('.feed .entry').length).not.toBe(0);
+            done();
+        });
     });
 
     /* Test suite for the New Feed Selection */
@@ -104,7 +96,7 @@ $(function () {
                 feedContent = $('.feed').html();
                 setTimeout(function () {
                     done();
-                }, 2000);
+                });
             });
         });
 
