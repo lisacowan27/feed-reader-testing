@@ -76,7 +76,8 @@ $(function () {
         });
 
 
-        it('at least 1 single .entry element in .feed container', function (done) {
+        it('at least 1 single .entry element in .feed container',
+            function (done) {
             expect($('.feed .entry').length).not.toBe(0);
             done();
         });
