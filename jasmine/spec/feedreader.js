@@ -70,9 +70,7 @@ $(function () {
         the .feed container. */
 
         beforeEach(function (done) {
-            setTimeout(function () {
-                loadFeed(0, done);
-            });
+            loadFeed(0, done);
         });
 
 
@@ -95,9 +93,7 @@ $(function () {
         beforeEach(function (done) {
             loadFeed(1, function () {
                 feedContent = $('.feed').html();
-                setTimeout(function () {
-                    done();
-                });
+                done();
             });
         });
 
